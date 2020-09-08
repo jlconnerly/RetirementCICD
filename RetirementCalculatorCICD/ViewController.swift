@@ -17,7 +17,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var plannedRetAgeTextField: UITextField!
     @IBOutlet weak var interestRateTextField: UITextField!
     @IBOutlet weak var currentSavingsTextField: UITextField!
-    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    
+    @IBOutlet weak var calculateButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +62,7 @@ class ViewController: UIViewController {
         let properties = ["currentAge": currentAgeString,
                           "plannedAge": plannedAgeString]
         MSAnalytics.trackEvent("calculate_retirement_amount",withProperties: properties)
-        valueLabel.text = "If you save $\(monthlyInvestment) every month for \(plannedAgeInt - ageInt) years, and invest that money plus your current investment of \(currentSavings) at a \(interestRate)% annual interest rate, you will have $\(retirementAmount) by the time you are \(plannedAgeString)."
+        resultLabel.text = "If you save $\(monthlyInvestment) every month for \(plannedAgeInt - ageInt) years, and invest that money plus your current investment of \(currentSavings) at a \(interestRate)% annual interest rate, you will have $\(retirementAmount) by the time you are \(plannedAgeString)."
         
     }
     
