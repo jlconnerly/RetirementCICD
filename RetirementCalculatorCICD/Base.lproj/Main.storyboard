@@ -88,10 +88,10 @@
                                     <constraint firstItem="29r-wZ-Pz6" firstAttribute="top" secondItem="n2X-sV-5GN" secondAttribute="bottom" constant="8" id="qvg-eg-Jff"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter some values to calculate your retirement amount." lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20X-Jv-V2P">
-                                <rect key="frame" x="20" y="292" width="374" height="74"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter some values to calculate your retirement amount." lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20X-Jv-V2P">
+                                <rect key="frame" x="20" y="292" width="374" height="291"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="74" id="zlm-A0-E7F"/>
+                                    <constraint firstAttribute="height" constant="291" id="zlm-A0-E7F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
