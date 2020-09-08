@@ -32,6 +32,12 @@ class ViewController: UIViewController {
         }
         MSAnalytics.trackEvent("navigated_to_calculator")
     }
+    
+    func calulateRetirementAmount(currentAge: Int, retirementAge: Int, monthlyInvestment: Float, currentSavings: Float, interestRate: Float) -> Double {
+        let monthsUnitRetirement = (retirementAge - currentAge) * 12
+        var retirementAmount = Double(currentSavings) * pow(Double(1+interestRate/100), Double(monthsUnitRetirement))
+        return retirementAmount
+    }
 
     @IBAction func calcRetButtonTapped(_ sender: UIButton) {
         //current age
@@ -48,10 +54,12 @@ class ViewController: UIViewController {
         guard let currentSavings = Float(currentSavingsTextField.text!) else { return }
         // interest rate
         guard let interestRate = Float(interestRateTextField.text!) else { return }
+        
+        let retirementAmount = calulateRetirementAmount(currentAge: ageInt, retirementAge: plannedAgeInt, monthlyInvestment: monthlyInvestment, currentSavings: currentSavings, interestRate: interestRate)
         let properties = ["currentAge": currentAgeString,
                           "plannedAge": plannedAgeString]
         MSAnalytics.trackEvent("calculate_retirement_amount",withProperties: properties)
-        valueLabel.text = "If you save $\(monthlyInvestment) every month for \(plannedAgeInt - ageInt) years, and invest that money plus your current investment of \(currentSavings) at a \(interestRate)% annual interest rate, yu will have $X by the time you are \(plannedAgeString)."
+        valueLabel.text = "If you save $\(monthlyInvestment) every month for \(plannedAgeInt - ageInt) years, and invest that money plus your current investment of \(currentSavings) at a \(interestRate)% annual interest rate, you will have $\(retirementAmount) by the time you are \(plannedAgeString)."
         
     }
     
