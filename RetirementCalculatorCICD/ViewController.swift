@@ -34,15 +34,25 @@ class ViewController: UIViewController {
     }
 
     @IBAction func calcRetButtonTapped(_ sender: UIButton) {
+        //current age
         guard let currentAge = ageTextField.text,
             let ageInt = Int(currentAge) else { return }
+        let currentAgeString = String(ageInt)
+        //planned age
         guard let plannedAge = plannedRetAgeTextField.text,
             let plannedAgeInt = Int(plannedAge) else { return }
-        let currentAgeString = String(ageInt)
         let plannedAgeString = String(plannedAgeInt)
+        // monthly investment
+        guard let monthlyInvestment = Float(monthlyInvTextField.text!) else { return }
+        // current savings
+        guard let currentSavings = Float(currentSavingsTextField.text!) else { return }
+        // interest rate
+        guard let interestRate = Float(interestRateTextField.text!) else { return }
         let properties = ["currentAge": currentAgeString,
                           "plannedAge": plannedAgeString]
         MSAnalytics.trackEvent("calculate_retirement_amount",withProperties: properties)
+        valueLabel.text = "If you save $\(monthlyInvestment) every month for \(plannedAgeInt - ageInt) years, and invest that money plus your current investment of \(currentSavings) at a \(interestRate)% annual interest rate, yu will have $X by the time you are \(plannedAgeString)."
+        
     }
     
 }
