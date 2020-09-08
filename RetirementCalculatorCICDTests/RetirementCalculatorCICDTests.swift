@@ -10,18 +10,40 @@ import XCTest
 @testable import RetirementCalculatorCICD
 
 class RetirementCalculatorCICDTests: XCTestCase {
+    
+    var sut: ViewController?
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        sut = storyBoard.instantiateViewController(identifier: "ViewController") as? ViewController
+        sut?.loadViewIfNeeded()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func tap(button: Any) {
+        switch button {
+        case is UIButton:
+            let button = button as? UIButton
+            button?.sendActions(for: .touchUpInside)
+        default:
+            return
+        }
+    }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        sut?.monthlyInvTextField.text = "300"
+        sut?.ageTextField.text = "30"
+        sut?.plannedRetAgeTextField.text = "65"
+        sut?.interestRateTextField.text = "4"
+        sut?.currentSavingsTextField.text = "1000"
+        tap(button: sut?.calculateButton)
+        
+         let expectedText = "If you save $300.0 every month for 35 years, and invest that money plus your current investment of 1000.0 at a 4.0% annual interest rate, you will have $14255938559.294945 by the time you are 65."
+        
+        XCTAssertEqual(sut?.resultLabel.text, expectedText)
     }
 
     func testPerformanceExample() throws {
