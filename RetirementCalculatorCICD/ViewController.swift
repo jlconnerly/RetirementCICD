@@ -8,6 +8,7 @@
 
 import UIKit
 import AppCenterCrashes
+import AppCenterAnalytics
 
 class ViewController: UIViewController {
 
@@ -29,10 +30,19 @@ class ViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "It's OK... I guess...", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+        MSAnalytics.trackEvent("navigated_to_calculator")
     }
 
     @IBAction func calcRetButtonTapped(_ sender: UIButton) {
-        MSCrashes.generateTestCrash()
+        guard let currentAge = ageTextField.text,
+            let ageInt = Int(currentAge) else { return }
+        guard let plannedAge = plannedRetAgeTextField.text,
+            let plannedAgeInt = Int(plannedAge) else { return }
+        let currentAgeString = String(ageInt)
+        let plannedAgeString = String(plannedAgeInt)
+        let properties = ["currentAge": currentAgeString,
+                          "plannedAge": plannedAgeString]
+        MSAnalytics.trackEvent("calculate_retirement_amount",withProperties: properties)
     }
     
 }

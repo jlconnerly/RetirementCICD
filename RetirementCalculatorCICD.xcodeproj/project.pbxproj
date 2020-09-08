@@ -165,7 +165,6 @@
 				C29962FA5E6FFFE06A4F07A0 /* Pods-RetirementCalculatorCICDTests.debug.xcconfig */,
 				E8C9CB06C7A90DFD1994420E /* Pods-RetirementCalculatorCICDTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
